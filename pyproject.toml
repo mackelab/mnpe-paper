@@ -1,0 +1,58 @@
+[project]
+name = "mnpe-paper"
+version = "1.0.0"
+description = "Reproduction code for the MNPE paper: mixed neural posterior estimation for models with discrete and continuous parameters."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "arviz<1.0",  # pymc 5.x needs the pre-1.0 arviz API (arviz.InferenceData)
+    # Upper-bounded for the same reason as sbi, on sharper evidence: the published
+    # PDFs were rendered by 3.10.8, and under 3.11.1 every figure shifts — the
+    # tight-bbox calculation and the font metrics both moved, changing the coal
+    # page height by 4px and putting a difference on essentially every glyph. A
+    # page-render diff against the paper's figures is how an unintended change to
+    # a figure script gets caught, so this pin is what keeps that check executable
+    # rather than drowned in rendering noise.
+    "matplotlib>=3.10.7,<3.11",
+    "numpy>=2.3.5",
+    "numpyro>=0.20.0",
+    "optuna>=4.9.0",
+    "pandas>=2.3.3",
+    "pymc>=5.28.0",
+    "pymc-extras>=0.10.0",
+    # Exact: the version the published results were produced with. MNPE's
+    # construction interface moved after v0.27.0. The architecture itself is
+    # pinned in this repo's own code (see tests/test_architecture_pinning.py).
+    "sbi==0.27.0",
+    "scipy>=1.16.3",
+]
+
+[dependency-groups]
+# Configured below. uv installs this group by default, so both run from a fresh
+# sync.
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.14",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+extra-index-url = ["https://download.pytorch.org/whl/cpu"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mnpe_paper"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

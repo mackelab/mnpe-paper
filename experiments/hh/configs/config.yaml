@@ -1,0 +1,12 @@
+defaults:
+  - data_config: hh_model
+  - inference_config: mnpe_hh
+  - launcher: slurm 
+  - _self_
+
+hydra:
+  run:
+    dir: artifacts/hh/hydra/${now:%Y-%m-%d_%H-%M-%S}
+  sweep:
+    dir: artifacts/hh/hydra/multirun/${now:%Y-%m-%d_%H-%M-%S}
+    subdir: ${hydra.job.num}

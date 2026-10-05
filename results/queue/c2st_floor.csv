@@ -1,0 +1,2 @@
+metric,mean,std,n_splits,n_samples
+c2st_split_floor,0.502125,0.006510824320570576,4,10000

@@ -1,0 +1,68 @@
+# Heavy artifacts are excluded by PATH, never by extension.
+#
+# This is deliberate and worth stating, because the obvious shortcut breaks the
+# repository. Ignoring `*.npz`, `*.pdf`, `*.json` or `**/results/` globally
+# silently swallows exactly the files a reader needs: the tracked result tables
+# under `results/`, the exported figure inputs (`results/*/figure_inputs.npz`),
+# and the published figures under `figures/`. Add extension globs here only after
+# checking them against `git check-ignore -v` on a path in `results/` and one in
+# `figures/`.
+
+# ── Regenerated pipeline output ───────────────────────────────────────────
+# Written by the experiment scripts, read by the figure scripts when present
+# (see src/mnpe_paper/figure_io.py). Gigabytes when a full pipeline is rerun,
+# and never required to rebuild a figure.
+/artifacts/
+
+# Pipeline artifacts, trained estimators and tuning databases, wherever a script
+# still writes them beside itself.
+experiments/**/*.pkl
+experiments/**/*.pt
+experiments/**/*.db
+experiments/**/*.npy
+
+# Resumable-run scratch: per-unit checkpoints that scripts merge into the
+# tracked result table, plus smoke-run output. Both are intermediates.
+**/*_parts/
+**/*_SMOKE*
+
+# Sampled posteriors and per-run sweep rows, regenerable and large. Both normally
+# land under /artifacts/ above -- the scaling sweeps resolve a relative --row-dir
+# or --posterior-dir there deliberately. These two rules are the backstop for a
+# script that still writes such a directory beside itself.
+**/posteriors*/
+**/rows_*/
+
+# The figure scripts write a PNG beside every PDF. The paper uses the PDFs; the
+# PNGs are a convenience roughly three times their size, so they are regenerated
+# rather than tracked. Note this is a path rule, not `*.png` -- see the warning at
+# the top of this file.
+figures/*.png
+
+# Logs
+**/logs/
+**/sbi-logs/
+*.log
+
+# ── Python ────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# ── Tooling caches ────────────────────────────────────────────────────────
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# ── Editors and operating systems ─────────────────────────────────────────
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper as below."
+title: "Mixed neural posterior estimation for simulators with discrete and continuous parameters"
+type: software
+authors:
+  - given-names: Jan
+    family-names: Boelts
+  - given-names: Cornelius
+    family-names: Schröder
+  - given-names: Jonas
+    family-names: Beck
+  - given-names: Jakob H.
+    family-names: Macke
+  - given-names: Michael
+    family-names: Deistler
+  - given-names: Daniel
+    family-names: Gedon
+repository-code: "https://github.com/mackelab/mnpe-paper"
+license: Apache-2.0
+version: 1.0.0
+preferred-citation:
+  type: article
+  title: "Mixed neural posterior estimation for simulators with discrete and continuous parameters"
+  authors:
+    - given-names: Jan
+      family-names: Boelts
+    - given-names: Cornelius
+      family-names: Schröder
+    - given-names: Jonas
+      family-names: Beck
+    - given-names: Jakob H.
+      family-names: Macke
+    - given-names: Michael
+      family-names: Deistler
+    - given-names: Daniel
+      family-names: Gedon
+  journal: "Transactions on Machine Learning Research"
+  issn: 2835-8856
+  year: 2026
+  month: 9
+  url: "https://openreview.net/forum?id=fOZZeRfdrC"

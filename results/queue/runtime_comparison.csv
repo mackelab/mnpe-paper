@@ -1,0 +1,7 @@
+component,time_s,detail
+"MNPE one-off (budget 10,000)",59.42131990334019,sim 3s + train 57±12s (3 reps)
+"MNPE one-off (budget 100,000)",493.1416039306593,sim 22s + train 471±64s (3 reps)
+"MNPE per obs (10,000 samples)",0.101675368011153,mean over 6 reps
+MCMC/SMC per obs (single),3.4312213340308517,"1 run(s) × 4 chains × 6,000 draws, 25 configs marginalized, max R-hat 1.0000"
+MCMC/SMC per obs (checked),16.496309291920625,"5 run(s) × 4 chains × 6,000 draws, 25 configs marginalized, max R-hat 1.0000"
+Quadrature per obs (exact),82.2166690826416,"100,000 independent draws, exact 25-config quadrature, rel. error 8.7e-11"

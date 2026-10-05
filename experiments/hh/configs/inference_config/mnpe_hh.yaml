@@ -1,0 +1,22 @@
+
+seed: 42 #null
+hidden_features: 50
+num_transforms: 5
+num_bins: 10 # unset in the published runs, which took posterior_nn's default of 10
+hidden_layers: 6  
+num_blocks: 8  
+max_num_epochs: 1000
+n_train_samples: 10000
+training_batch_size: 500
+dropout_rate: 0.0
+data_file: data/jaxley_data_100k.pkl
+output_file: mnpe_posterior.pkl
+test_data_file: data/jaxley_data_10k_test.pkl
+
+# for evaluation
+eval_n_samples: 1 # for mse, how many samples to draw from the posterior for each test data point
+eval_n_test: 1000 # for mse, if null, use all test data
+num_posterior_samples: 1000 # for SBC
+num_samples_sbc: 500 # for continuous SBC (on marginals)
+num_samples_sbc_discrete: 500 # for discrete calibration
+num_discrete_sbc_bins: 10 # for discrete calibration, how many bins to use for the discrete parameters
